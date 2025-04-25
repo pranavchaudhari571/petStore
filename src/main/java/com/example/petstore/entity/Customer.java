@@ -37,7 +37,7 @@ public class Customer {
     @Pattern(regexp = "^[0-9]{10}$", message = "Invalid phone number")
     private String customerPhone;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orders;
 }
 

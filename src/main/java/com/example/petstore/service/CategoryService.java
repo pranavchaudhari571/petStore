@@ -4,6 +4,7 @@ package com.example.petstore.service;
 import com.example.petstore.dto.CategoryDTO;
 import com.example.petstore.entity.Category;
 import com.example.petstore.repository.CategoryRepository;
+import lombok.extern.slf4j.XSlf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional
+@XSlf4j
 public class CategoryService {
 
     @Autowired
@@ -25,6 +27,7 @@ public class CategoryService {
     public CategoryDTO createCategory(CategoryDTO categoryDTO) {
         Category category = modelMapper.map(categoryDTO, Category.class);
         Category savedCategory = categoryRepository.save(category);
+//        log.INFO("Category created with ID: {}", savedCategory.getCategoryId());
         return modelMapper.map(savedCategory, CategoryDTO.class);
     }
 
